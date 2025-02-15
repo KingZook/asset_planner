@@ -17,7 +17,34 @@ p, li {
 }
 
 body {
-    width: 400px;
+    width: 800px;
     margin: 0 auto;
     background-color: #0a191b;
+}
+
+
+table {
+    width: 100%;
+    font-size: 30px;
+    border-spacing: 5px;
+    table-layout: fixed;
+}
+
+th, td {
+    padding: 10px;   
+    text-align: left; 
+}
+
+td { 
+    max-width: 80px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(250, 199, 89);
+    color: black;
+}
+tr:nth-child(odd) {
+    background-color: rgb(255, 189, 91);
+    color: black;
 }
