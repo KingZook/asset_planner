@@ -15,8 +15,9 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-          git checkout feature/reactinit
-          ls ${{ github.workspace }}
+      - name: List all branches
+        run: |
+          git branch -l -r
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
 
