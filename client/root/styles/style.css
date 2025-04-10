@@ -1,0 +1,50 @@
+html {
+    font-size: 10px;
+    font-family: "Open Sans",sans-serif;
+    background-color: #040a1b;
+    color: rgb(255, 221, 127);
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+}
+
+p, li {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+body {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #0a191b;
+}
+
+
+table {
+    width: 100%;
+    font-size: 30px;
+    border-spacing: 5px;
+    table-layout: fixed;
+}
+
+th, td {
+    padding: 10px;   
+    text-align: left; 
+}
+
+td { 
+    max-width: 80px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(250, 199, 89);
+    color: black;
+}
+tr:nth-child(odd) {
+    background-color: rgb(255, 189, 91);
+    color: black;
+}
