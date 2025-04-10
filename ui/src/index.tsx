@@ -1,15 +1,15 @@
 import { serve } from "bun";
 import index from "./index.html";
-import apiRoutes from "./api/api";
+// import uiRoutes from "./ui";
+// import apiRoutes from "./api/api";
 
-const uiRoutes = {
-  // Serve index.html for all unmatched routes.
-  "/*": index,
-}
-let appRoutes = {...uiRoutes, ...apiRoutes};
-console.log(appRoutes)
+export const PAGE_TITLE = "Asset Planner";
+
+// let appRoutes = { "/*": index, ...uiRoutes, ...apiRoutes};
+// console.log(appRoutes);
+
 const server = serve({
-  routes: appRoutes,
+  routes: { "/*": index},
 
   development: process.env.NODE_ENV !== "production",
 });

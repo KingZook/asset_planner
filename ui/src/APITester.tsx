@@ -1,4 +1,5 @@
 import React, { useRef, type FormEvent } from "react";
+import { PAGE_TITLE } from "./index";
 
 export function APITester() {
   const responseInputRef = useRef<HTMLTextAreaElement>(null);
@@ -16,12 +17,15 @@ export function APITester() {
 
       const data = await res.json();
       responseInputRef.current!.value = JSON.stringify(data, null, 2);
+      
     } catch (error) {
       responseInputRef.current!.value = String(error);
     }
   };
 
   return (
+    <>
+    <title>{PAGE_TITLE} {responseInputRef}</title>
     <div className="mt-8 mx-auto w-full max-w-2xl text-left flex flex-col gap-4">
       <form
         onSubmit={testEndpoint}
@@ -59,5 +63,6 @@ export function APITester() {
         className="w-full min-h-[140px] bg-[#1a1a1a] border-2 border-[#fbf0df] rounded-xl p-3 text-[#fbf0df] font-mono resize-y focus:border-[#f3d5a3] placeholder-[#fbf0df]/40"
       />
     </div>
+    </>
   );
 }
