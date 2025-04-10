@@ -1,12 +1,19 @@
 import React, { useRef, type FormEvent } from "react";
-import { PAGE_TITLE } from "./index";
+import { PAGE_TITLE } from "./ui";
+import { setTitle } from "./components/header";
+
+function apiTitle(title) {
+  return(PAGE_TITLE + (title? " " + title : ""));
+}
 
 export function APITester() {
   const responseInputRef = useRef<HTMLTextAreaElement>(null);
-
+  var t = "somthing"
+  setTitle(apiTitle(t));
+  
   const testEndpoint = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     try {
       const form = e.currentTarget;
       const formData = new FormData(form);
@@ -17,6 +24,7 @@ export function APITester() {
 
       const data = await res.json();
       responseInputRef.current!.value = JSON.stringify(data, null, 2);
+      document.title = PAGE_TITLE + " " + data.message;
       
     } catch (error) {
       responseInputRef.current!.value = String(error);
@@ -25,7 +33,6 @@ export function APITester() {
 
   return (
     <>
-    <title>{PAGE_TITLE} {responseInputRef}</title>
     <div className="mt-8 mx-auto w-full max-w-2xl text-left flex flex-col gap-4">
       <form
         onSubmit={testEndpoint}
