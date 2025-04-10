@@ -1,18 +1,15 @@
 import { serve } from "bun";
 import index from "./index.html";
+import apiRoutes from "./api/api";
 
+const uiRoutes = {
+  // Serve index.html for all unmatched routes.
+  "/*": index,
+}
+let appRoutes = {...uiRoutes, ...apiRoutes};
+console.log(appRoutes)
 const server = serve({
-  routes: {
-    // Serve index.html for all unmatched routes.
-    "/*": index,
-
-    "/api/hello/:name": async (req) => {
-      const name = req.params.name;
-      return Response.json({
-        message: `Hello, ${name}!`,
-      });
-    },
-  },
+  routes: appRoutes,
 
   development: process.env.NODE_ENV !== "production",
 });
