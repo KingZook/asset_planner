@@ -5,34 +5,47 @@
  * It is included in `src/index.html`.
  */
 
-import { createRoot } from "react-dom/client";
+import { renderToReadableStream } from "react-dom/server";
 import { App } from "./App";
 import Head from "./components/header";
 
+export const serverProps = { url: ""};
 
-function Index(){
+export function Index(){
   return(
-    <>
+    <html>
     <Head/>
     <body>
       <div>
         <App/>
       </div>
     </body>
-  </>
+  </html>
   );
 }
 
 
-function start() {
-  const root = createRoot(document.getElementById('root'));
-  root.render(<Index />);
+// function start() {
+//   const root = renderToReadableStream(document.getElementById('root'));
+//   root.render(<App />);
+// }
+
+
+
+// if (document.readyState === "loading") {
+//   document.addEventListener("DOMContentLoaded", start);
+// } else {
+//   start();
+// }
+
+export async function service() {
+  const stream = await renderToReadableStream(
+    Index(), {bootstrapScripts: ["./dist/hydrate.js"]},
+  );
+  return new Response(stream, {
+    headers: { "Content-Type": "text/html" },
+  });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", start);
-} else {
-  start();
-}
 
 

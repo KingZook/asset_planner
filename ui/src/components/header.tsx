@@ -1,6 +1,7 @@
 import React from "react";
 import { PAGE_TITLE } from "../ui";
 import { useEffect } from "react";
+import { serverProps } from "@/frontend";
 
 export function setTitle(title){
     useEffect( ()=> {
@@ -10,11 +11,13 @@ export function setTitle(title){
 
 export default function Head() {
     setTitle(PAGE_TITLE);
+    const logo = "./assets/logo.svg";
     return (
         <head>
-            <meta charset="UTF-8" />
+            <style src="./index.css"/>
+            <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="icon" type="image/svg+xml" href="../assets/logo.svg" />
+            <link rel="icon" type="image/svg+xml" href={logo} />
         </head>
     );
 }

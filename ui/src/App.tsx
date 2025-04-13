@@ -1,8 +1,8 @@
 import "./index.css";
 import { APITester } from "./APITester";
 
-import logo from "./assets/logo.svg";
-import reactLogo from "./assets/react.svg";
+const logo = "./assets/logo.svg";
+const reactLogo = "./assets/react.svg";
 
 export function App() {
   return (
@@ -20,7 +20,7 @@ export function App() {
         />
       </div>
 
-      <h1 className="text-5xl font-bold my-4 leading-tight">Bun + React</h1>
+      <h1 className="text-5xl font-bold my-4 leading-tight" ><a  href="./uphomepage">Bun + React</a></h1>
       <p>
         Edit{" "}
         <code className="bg-[#1a1a1a] px-2 py-1 rounded font-mono">
