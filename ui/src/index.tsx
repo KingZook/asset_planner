@@ -1,13 +1,14 @@
 import uiRoutes from "./ui";
 import apiRoutes from "./api/api";
 import { serverProps, service } from "./frontend";
-import { compile } from "tailwindcss";
+import * as tw from "bun-plugin-tailwind";
 
 
 var builds = await Bun.build({
   entrypoints: ['./src/components/hydrate.ts'],
   target: "browser",
   outdir: './dist',
+  plugins: [tw.default] ,
   minify: true
 });
 
