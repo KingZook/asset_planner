@@ -20,13 +20,13 @@ const buildRoutes = {};
 
 builds.outputs.forEach( build =>
   {
-    var dirs = build.path.split("\\");
+    var dirs = Bun.pathToFileURL(build.path).pathname.split("/");
     const fname = dirs[dirs.length-1];
     var ct = build.type
     if (fname.split(".")[1] === "css"){
       ct = "text/css;" + build.type.split(";")[1];
     }
-    console.log(build.path);
+    console.log(dirs);
     console.log(ct);
     buildRoutes[`/dist/${dirs[dirs.length-1]}`] = async (req) => { return new Response(await Bun.file(build.path).bytes(), {
         headers: {
