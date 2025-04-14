@@ -1,11 +1,8 @@
 import uiRoutes from "./ui";
 import apiRoutes from "./api/api";
 import { serverProps, service } from "./frontend";
+import { compile } from "tailwindcss";
 
-
-const appRoutes = {  ...uiRoutes, ...apiRoutes};
-// let appRoutes = { "/*": index, ...uiRoutes, ...apiRoutes};
-console.log(appRoutes);
 
 var builds = await Bun.build({
   entrypoints: ['./src/components/hydrate.ts'],
@@ -14,20 +11,34 @@ var builds = await Bun.build({
   minify: true
 });
 
+var result = "";
+
+console.log(result);
+
 const buildRoutes = {};
 
 builds.outputs.forEach( build =>
   {
     var dirs = build.path.split("\\");
-    console.log(dirs[dirs.length-1]);
+    const fname = dirs[dirs.length-1];
+    var ct = build.type
+    if (fname.split(".")[1] === "css"){
+      ct = "text/css;" + build.type.split(";")[1];
+    }
+    console.log(build.path);
+    console.log(ct);
     buildRoutes[`/dist/${dirs[dirs.length-1]}`] = async (req) => { return new Response(await Bun.file(build.path).bytes(), {
         headers: {
-          "Content-Type": build.type,
+          "Content-Type": ct,
         }}); };
-  }
-);
-
-console.log(buildRoutes);
+      }
+    );
+    
+  // compile()
+  
+  const appRoutes = {  ...buildRoutes, ...uiRoutes, ...apiRoutes};
+  // let appRoutes = { "/*": index, ...uiRoutes, ...apiRoutes};
+  console.log(appRoutes);
 
 export const server = Bun.serve({
   routes: appRoutes,

@@ -41,7 +41,7 @@ export function Index(){
 export async function service() {
   const stream = await renderToReadableStream(
     Index(), {bootstrapScripts: ["./dist/hydrate.js"]},
-  );
+  ); 
   return new Response(stream, {
     headers: { "Content-Type": "text/html" },
   });

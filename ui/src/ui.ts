@@ -13,13 +13,9 @@ const uiRoutes = {
       },
     })
   },
-    "/dist/:file": async (req) => { return new Response(await Bun.file(`./dist/${req.params.file}`).bytes(), {
-      headers: {
-        "Content-Type": "text/javascript",
-      },
-    })
-  },
+    "/dist/output.css": async (req) => { return new Response(Bun.file("./dist/output.css"));},
+    
   "/*": service,
 }
-  
+
 export default uiRoutes;
