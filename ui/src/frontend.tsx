@@ -8,19 +8,18 @@
 import { renderToReadableStream } from "react-dom/server";
 import { App } from "./App";
 import Head from "./components/header";
+import Retrieve from "./components/retrieval";
 
 export const serverProps = { url: ""};
 
 export function Index(){
   return(
-    <html>
-    <Head/>
-    <body>
-      <div>
-        <App/>
-      </div>
-    </body>
-  </html>
+  <>
+    <div>
+      <Retrieve/>
+      {/* <App/> */}
+    </div>
+  </>
   );
 }
 

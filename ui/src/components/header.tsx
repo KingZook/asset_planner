@@ -12,12 +12,12 @@ export default function Head() {
     setTitle(PAGE_TITLE);
     const logo = "./assets/logo.svg";
     return (
-        <head>
+        <>
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="./dist/hydrate.css"/>
+            {/* <link rel="stylesheet" href="./dist/hydrate.css"/> */}
             <link rel="icon" type="image/svg+xml" href={logo} />
-        </head>
+        </>
     );
 }
 

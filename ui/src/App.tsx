@@ -1,12 +1,14 @@
 import "./index.css";
 import { APITester } from "./APITester";
+import Retrieve from "./components/retrieval";
 
 const logo = "./assets/logo.svg";
 const reactLogo = "./assets/react.svg";
 
 export function App() {
   return (
-    <body>
+    <>
+      <Retrieve/>
         <h1 className="text-center align-super stroke-amber-500 text-5xl ">
             UP PLANNER
         </h1>
@@ -24,12 +26,13 @@ export function App() {
         </p>
         <br/>
         The api output of the up transaction data will be shown below from the rudimentary javascript file.
-        <br/> <button id="api-button">Retrieve data</button>
+        <br/>
+        
         <br/> <span id="username"></span>
         <table id="insersion">
 
         </table>
-      </body>
+      </>
   );
 }
 
